@@ -3743,6 +3743,7 @@ penny
 peons
 peony
 peppy
+pepsi
 perch
 perdu
 peril
@@ -3751,6 +3752,7 @@ perky
 perms
 perry
 perth
+pessi
 pesky
 pesos
 pesto
