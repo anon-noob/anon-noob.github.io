@@ -1,8 +1,12 @@
 // Highly recommend playing the game before looking here!
 
+let guessHistory = {};
+let gameState = "active";
+let guessCount = 0;
+let solution = "Did you really think you can get away with this";
+
 let validWords;
-let guessCount;
-let solution;
+
 
 function readTextFile() {
     return new Promise((resolve, reject) => {
@@ -26,13 +30,8 @@ function readTextFile() {
 readTextFile()
     .then((value) => {
         console.log(`Loaded dictionary`);
-        guessCount = 0;
-        solution = "Did you really think you can get away with this";
-        return Promise.resolve();
-    })
-    .then(() => {
-        console.log(`Guess counter is ready`);
         console.log(`The solution has been decided`);
+        return Promise.resolve();
     })
     .catch((error) => {
         console.error(error);
@@ -57,7 +56,7 @@ function handleSubmit(event) {
     event.preventDefault()
     
     // solution
-    let trueSol = "<No Leaking>";
+    let trueSol = "We do not permit leaking the asnwer";
 
     // get elements
     var inputField = document.getElementById('input-field');
@@ -89,6 +88,8 @@ function handleSubmit(event) {
     }
 
     guessCount++;
+    guessHistory[guessCount] = {0:"", 1:"", 2:"", 3:"", 4:""};
+
     var displayCount = document.getElementById('count');
     if (guessCount === 1) {
         displayCount.textContent = `You guessed ${guessCount} time`
@@ -107,13 +108,15 @@ function handleSubmit(event) {
         if (trueSol[i] === inputData[i]) {
             table.rows[guessCount].cells[i].innerHTML = `<span style="color:green">${inputData[i]}</span>`;
             charCount[inputData[i]]--;
+            guessHistory[guessCount][i] = "🟩";
             delete charPos[i];
         }
     }
 
     // win
     if (inputData === trueSol) {
-        result("win");
+        gameState = "active"
+        result();
         return
     }
 
@@ -122,23 +125,27 @@ function handleSubmit(event) {
         if (trueSol.includes(char) && charCount[char] > 0) {
             table.rows[guessCount].cells[index].innerHTML = `<span style="color:gold">${char}</span>`;
             charCount[char]--;
+            guessHistory[guessCount][index] = "🟨";
         } else {
             table.rows[guessCount].cells[index].innerHTML = `<span style="color:gray">${char}</span>`;
+            guessHistory[guessCount][index] = "⬛";
         }
     })
 
     // lose
     if (guessCount === 6) {
-        result("lose")
+        gameState = "lose";
+        result();
         return
     }
 }
 
-function result(str) {
+function result() {
     document.getElementById('input-field').disabled = true;
     document.getElementById('submit').disabled = true;
+    document.getElementById('share').disabled = false;
 
-    switch (str) {
+    switch (gameState) {
         case "win":
             var displayCount = document.getElementById('count');
             displayCount.textContent = `Win! Took ${guessCount} guesses.`
@@ -150,5 +157,46 @@ function result(str) {
             break;
     }
 
-    document.getElementById("extra").textContent = "You probably still tried to cheat"
+    // banter
+    switch (guessCount) {
+        case 1:
+            document.getElementById("extra").textContent = "Now you definitely are a cheater...";
+            break;
+        case 2:
+            document.getElementById("extra").textContent = "Lucky or genius?";
+            break;
+        case 3:
+            document.getElementById("extra").textContent = "Smart, well done!";
+            break;
+        case 4:
+            document.getElementById("extra").textContent = "Nicely finished!"
+            break;
+        case 5:
+            document.getElementById("extra").textContent = "It took a while but we made it.";
+            break;
+        case 6:
+            if (gameState === "win") {
+                document.getElementById("extra").textContent = "Phew, thank goodness you made it.";
+            } else {
+                document.getElementById("extra").textContent = "Consider brushing up on your vocabulary";
+            }
+            break;
+    }
+    
+}
+
+function shareToClipboard() {
+    let text = `Parkour Wordle `;
+    text += gameState == "win" ? `${guessCount}/6` : "Failed";
+
+    Object.entries(guessHistory).forEach( (row, value) => {
+        Object.values(value).forEach((emoji) => {
+            text += emoji;
+        })
+
+        text += "\n";
+    })
+    text += "https://anon-noob.github.io/"
+    navigator.clipboard.writeText(text);
+    document.getElementById("clipboard").textContent = "Copied to clipboard!";
 }
