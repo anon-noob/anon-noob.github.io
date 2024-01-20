@@ -56,7 +56,7 @@ function handleSubmit(event) {
     event.preventDefault()
     
     // solution
-    let trueSol = "We do not permit leaking the asnwer";
+    let trueSol = "cacti"
 
     // get elements
     var inputField = document.getElementById('input-field');
@@ -153,32 +153,32 @@ function result() {
         
         case "lose":
             var displayCount = document.getElementById('count');
-            displayCount.textContent = `Lose! Word was ${toChar(parseInt('0x5A24CD629F6B').toString())}.`
+            displayCount.textContent = `Lose! Word was cacti.`
             break;
     }
 
     // banter
     switch (guessCount) {
         case 1:
-            document.getElementById("extra").textContent = "Now you definitely are a cheater...";
+            document.getElementById("extra").textContent = "Stop it right there alt 45er";
             break;
         case 2:
-            document.getElementById("extra").textContent = "Lucky or genius?";
+            document.getElementById("extra").textContent = "brilliant";
             break;
         case 3:
-            document.getElementById("extra").textContent = "Smart, well done!";
+            document.getElementById("extra").textContent = "Excellent";
             break;
         case 4:
-            document.getElementById("extra").textContent = "Nicely finished!"
+            document.getElementById("extra").textContent = "Great"
             break;
         case 5:
-            document.getElementById("extra").textContent = "It took a while but we made it.";
+            document.getElementById("extra").textContent = "At least you knew this word.";
             break;
         case 6:
             if (gameState === "win") {
-                document.getElementById("extra").textContent = "Phew, thank goodness you made it.";
+                document.getElementById("extra").textContent = "Almost got ya";
             } else {
-                document.getElementById("extra").textContent = "Consider brushing up on your vocabulary";
+                document.getElementById("extra").textContent = "Get PranKd n00b";
             }
             break;
     }
