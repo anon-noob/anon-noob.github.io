@@ -56,7 +56,7 @@ function handleSubmit(event) {
     event.preventDefault()
     
     // solution
-    let trueSol = "cacti"
+    let trueSol = "leakkkkkkk"
 
     // get elements
     var inputField = document.getElementById('input-field');
@@ -153,7 +153,7 @@ function result() {
         
         case "lose":
             var displayCount = document.getElementById('count');
-            displayCount.textContent = `Lose! Word was cacti.`
+            displayCount.textContent = `Lose! Word was urmom.`
             break;
     }
 
