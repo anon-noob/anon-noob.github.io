@@ -65,12 +65,6 @@
             <input id="submit" type="submit" name="submit" value="Enter">
         </form>
         
-        <!-- <div id="keyboard">
-            <p id="untyped"></p>
-            <p id="green"></p>
-            <p id="yellow"></p>
-            <p id="gray"></p>
-        </div> -->
         <div id="keyboard" style="margin-top:20px;">
             <div>
                 <button type="button" class="key" onclick="pressKey('Q')">Q</button>
@@ -145,6 +139,7 @@
         <div id="result"></div>
         <div id="count"></div>
         <div id="extra"></div>
+        <div id="time until next word"></div>
 
         <div id="share-display">
             <button id="share" onclick="shareToClipboard()" disabled>Share</button>
@@ -178,7 +173,7 @@ function readTextFile() {
 }
 
 readTextFile()
-    .then((value) => {
+.then((value) => {
         console.log(`Loaded dictionary`);
         console.log(`The solution has been decided`);
         return Promise.resolve();
@@ -212,6 +207,7 @@ let words = [
 ]
 let today = new Date();
 let utcDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+let nextMidnight = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() + 1));
 let seed = utcDate.getTime() / 86400000;
 function seededRandom(seed) {
         // Mulberry32 PRNG
@@ -402,6 +398,21 @@ function result() {
             }
             break;
     }
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = nextMidnight - now;
+        if (diff > 0) {
+            const hours = String(Math.floor(diff / 3600000)).padStart(2, '0');
+            const minutes = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+            const seconds = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+            document.getElementById("time until next word").textContent = `Next word in ${hours}:${minutes}:${seconds}`;
+        } else {
+            document.getElementById("time until next word").textContent = "New word available, refresh to play again!";
+        }
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
     
 }
 
