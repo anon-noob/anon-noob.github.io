@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>pkwordle</title>
+        <title>pkworlde</title>
     </head>
 
     <body>
@@ -65,6 +65,83 @@
             <input id="submit" type="submit" name="submit" value="Enter">
         </form>
         
+        <!-- <div id="keyboard">
+            <p id="untyped"></p>
+            <p id="green"></p>
+            <p id="yellow"></p>
+            <p id="gray"></p>
+        </div> -->
+        <div id="keyboard" style="margin-top:20px;">
+            <div>
+                <button type="button" class="key" onclick="pressKey('Q')">Q</button>
+                <button type="button" class="key" onclick="pressKey('W')">W</button>
+                <button type="button" class="key" onclick="pressKey('E')">E</button>
+                <button type="button" class="key" onclick="pressKey('R')">R</button>
+                <button type="button" class="key" onclick="pressKey('T')">T</button>
+                <button type="button" class="key" onclick="pressKey('Y')">Y</button>
+                <button type="button" class="key" onclick="pressKey('U')">U</button>
+                <button type="button" class="key" onclick="pressKey('I')">I</button>
+                <button type="button" class="key" onclick="pressKey('O')">O</button>
+                <button type="button" class="key" onclick="pressKey('P')">P</button>
+            </div>
+            <div>
+                <button type="button" class="key" onclick="pressKey('A')">A</button>
+                <button type="button" class="key" onclick="pressKey('S')">S</button>
+                <button type="button" class="key" onclick="pressKey('D')">D</button>
+                <button type="button" class="key" onclick="pressKey('F')">F</button>
+                <button type="button" class="key" onclick="pressKey('G')">G</button>
+                <button type="button" class="key" onclick="pressKey('H')">H</button>
+                <button type="button" class="key" onclick="pressKey('J')">J</button>
+                <button type="button" class="key" onclick="pressKey('K')">K</button>
+                <button type="button" class="key" onclick="pressKey('L')">L</button>
+            </div>
+            <div>
+                <button type="button" class="key" onclick="pressKey('Backspace')">⌫</button>
+                <button type="button" class="key" onclick="pressKey('Z')">Z</button>
+                <button type="button" class="key" onclick="pressKey('X')">X</button>
+                <button type="button" class="key" onclick="pressKey('C')">C</button>
+                <button type="button" class="key" onclick="pressKey('V')">V</button>
+                <button type="button" class="key" onclick="pressKey('B')">B</button>
+                <button type="button" class="key" onclick="pressKey('N')">N</button>
+                <button type="button" class="key" onclick="pressKey('M')">M</button>
+                <button type="button" class="key" onclick="pressKey('Enter')">⏎</button>
+            </div>
+        </div>
+        <script>
+        function pressKey(key) {
+            const input = document.getElementById('input-field');
+            if (input.disabled) return;
+            if (key === 'Backspace') {
+                input.value = input.value.slice(0, -1);
+            } else if (key === 'Enter') {
+                document.querySelector('form').requestSubmit();
+            } else if (input.value.length < 5 && /^[A-Z]$/.test(key)) {
+                input.value += key.toLowerCase();
+            }
+            input.focus();
+        }
+        </script>
+        <style>
+        #keyboard .key {
+            width: 36px;
+            height: 40px;
+            margin: 2px;
+            font-size: 1.1em;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+            background: #eee;
+            cursor: pointer;
+            user-select: none;
+        }
+        #keyboard {
+            display: inline-block;
+            text-align: center;
+        }
+        #keyboard div {
+            margin-bottom: 4px;
+        }
+        </style>
+    
         <div id="result"></div>
         <div id="count"></div>
         <div id="extra"></div>
@@ -75,7 +152,281 @@
         </div>
 
         <script>
-            const _0x591fb3=_0x22bf;function _0x566f(){const _0x34fb00=['toString','length','writeText','catch','cells','0x60835097DD33','fromCharCode','log','getElementById','0x977D019A653','5Pbogai','0x593B45ED316C','The\x20solution\x20has\x20been\x20decided','0xA7841839A9C','active','status','test','0x68B128ECDE25','143556fkNTEU','915723EWdMZB','<span\x20style=\x22color:gray\x22>','40UpOAAp','get\x20PranKd\x20kid','0x90377A8D4D6','open','1316506merpaD','0x593A92C13A33','10912473TmvQcS','1567056VjgsgP','0x90377A8E478','<span\x20style=\x22color:gold\x22>','\x20guesses.','0x917A2047DBB','0x5A24CD629F6B','Failed','0xAE94BD7F1FA','0x10C024C6BE3','onreadystatechange','0xA323D8A4BC5','0x585235332A05','0xA0076D76418','0x5DC81F9B3E54','0x960B15C1FEB','5\x20letter\x20words.txt','innerHTML','readyState','Did\x20you\x20really\x20think\x20you\x20can\x20get\x20away\x20with\x20this','0xE8C375F0A0','1610208sSeiiy','disabled','3bLIvmB','extra','0x68B076D38B8C','126TpfeLT','0x8EC58EB3ED3','0x6998D34EFB03','result','0xA46503C0C7B','textContent','<span\x20style=\x27color:red\x27>','0x98C0C84C893','lose','wactus\x20jumps\x20anyone?','0x94963BD16C3','responseText','Failed\x20to\x20load\x20the\x20file.\x20Status:\x20','win','GET','error','667138LFmepw','0x5F98DAE5217C','0x5A2278BE24EC','</span>','0x5A241A923D74','resolve','then','entries','Almost\x20got\x20ya','0x593CABBBB42C','0x65F493253661','rows','forEach','0x9498CA8666D','value','Surprised\x20you\x20know\x20this\x20word','0x9493A0B90DD','count','0xE8C8ABD149','input-field','includes','clipboard','0xA8F4DA2AA2B','0xA320EAF4B71','share','You\x20guessed\x20','Lose!\x20Word\x20was\x20','0x68B341B98D74','0x68B0B1B73E6D','0xA78469DF454','0x585236180014','toLowerCase','0xE6C359A91D','send'];_0x566f=function(){return _0x34fb00;};return _0x566f();}(function(_0x1c73bc,_0x43931b){const _0x7391ff=_0x22bf,_0x2dcff4=_0x1c73bc();while(!![]){try{const _0x8d22cf=parseInt(_0x7391ff(0x202))/0x1+parseInt(_0x7391ff(0x1d6))/0x2*(-parseInt(_0x7391ff(0x1ef))/0x3)+parseInt(_0x7391ff(0x1ed))/0x4*(-parseInt(_0x7391ff(0x1c7))/0x5)+-parseInt(_0x7391ff(0x1cf))/0x6*(parseInt(_0x7391ff(0x1f2))/0x7)+parseInt(_0x7391ff(0x1d9))/0x8+-parseInt(_0x7391ff(0x1d0))/0x9*(-parseInt(_0x7391ff(0x1d2))/0xa)+parseInt(_0x7391ff(0x1d8))/0xb;if(_0x8d22cf===_0x43931b)break;else _0x2dcff4['push'](_0x2dcff4['shift']());}catch(_0x2ef54c){_0x2dcff4['push'](_0x2dcff4['shift']());}}}(_0x566f,0xbc212));let guessHistory={},gameState=_0x591fb3(0x1cb),guessCount=0x0,solution=_0x591fb3(0x1eb),validWords;function readTextFile(){return new Promise((_0x431409,_0x584a0b)=>{const _0x3d84f6=_0x22bf;let _0xc1e9e8=new XMLHttpRequest();_0xc1e9e8[_0x3d84f6(0x1e2)]=function(){const _0x107b6c=_0x3d84f6;_0xc1e9e8[_0x107b6c(0x1ea)]===0x4&&(_0xc1e9e8[_0x107b6c(0x1cc)]===0xc8?(validWords=_0xc1e9e8[_0x107b6c(0x1fd)],_0x431409(validWords)):_0x584a0b(new Error(_0x107b6c(0x1fe)+_0xc1e9e8[_0x107b6c(0x1cc)])));},_0xc1e9e8[_0x3d84f6(0x1d5)](_0x3d84f6(0x200),_0x3d84f6(0x1e8),!![]),_0xc1e9e8[_0x3d84f6(0x223)]();});}readTextFile()[_0x591fb3(0x208)](_0x49fda6=>{const _0x235f6b=_0x591fb3;return console[_0x235f6b(0x1c4)]('Loaded\x20dictionary'),console[_0x235f6b(0x1c4)](_0x235f6b(0x1c9)),Promise[_0x235f6b(0x207)]();})[_0x591fb3(0x1c0)](_0x547a54=>{const _0xcb8e60=_0x591fb3;console[_0xcb8e60(0x201)](_0x547a54);});let words=[_0x591fb3(0x1de),_0x591fb3(0x1e6),_0x591fb3(0x1e7),'0xA781DAC7E73',_0x591fb3(0x1f1),_0x591fb3(0x1e4),_0x591fb3(0x1f6),'0x68B19FE53E2C',_0x591fb3(0x218),_0x591fb3(0x20b),_0x591fb3(0x1ec),_0x591fb3(0x20f),_0x591fb3(0x1fc),'0x8EC41EA9E83',_0x591fb3(0x1e0),_0x591fb3(0x1dd),_0x591fb3(0x203),_0x591fb3(0x1c8),'0x68AFC34BFB24',_0x591fb3(0x21d),_0x591fb3(0x21f),'0xE8C8ABD149',_0x591fb3(0x1d4),_0x591fb3(0x1e1),_0x591fb3(0x204),_0x591fb3(0x1da),'0x6B6A7D223C7B',_0x591fb3(0x1ce),_0x591fb3(0x206),_0x591fb3(0x1e5),'0x65F581DC72F4','0xA78469DE0DA',_0x591fb3(0x1e3),'0x1105D6693C5',_0x591fb3(0x1f3),'0x91AA91AABE1','0xA3226914CA0',_0x591fb3(0x1f4),'0x699AECB4063A',_0x591fb3(0x220),_0x591fb3(0x1f9),_0x591fb3(0x219),_0x591fb3(0x21e),_0x591fb3(0x1d7),_0x591fb3(0x20c),_0x591fb3(0x1c6),_0x591fb3(0x222),_0x591fb3(0x212),_0x591fb3(0x1ca),_0x591fb3(0x1c2)];function toChar(_0x5a2ef7){const _0x277fdd=_0x591fb3;code='',finalResult='';for(char of _0x5a2ef7){code+=char,0x60<Number(code)&&Number(code)<0x7b&&(finalResult+=String[_0x277fdd(0x1c3)](code),code='');}return finalResult;}function handleSubmit(_0xdfdc00){const _0xf82bbe=_0x591fb3;_0xdfdc00['preventDefault']();let _0x1695f2=toChar(parseInt(_0xf82bbe(0x214))[_0xf82bbe(0x224)]());var _0x2c2d8a=document[_0xf82bbe(0x1c5)]('input-field'),_0x519e4f=document[_0xf82bbe(0x1c5)](_0xf82bbe(0x1f5)),_0x50c6f4=_0x2c2d8a['value'][_0xf82bbe(0x221)]();if(!/[a-zA-Z]+/[_0xf82bbe(0x1cd)](_0x50c6f4)||_0x50c6f4[_0xf82bbe(0x225)]!=0x5){_0x519e4f['innerHTML']='<span\x20style=\x27color:red\x27>There\x20seems\x20to\x20be\x20an\x20error,\x20try\x20again</span>';return;}if(!validWords[_0xf82bbe(0x216)](_0x50c6f4)){_0x519e4f[_0xf82bbe(0x1e9)]=_0xf82bbe(0x1f8)+_0x50c6f4+'\x20is\x20not\x20a\x20valid\x20word</span>';return;}_0x2c2d8a[_0xf82bbe(0x210)]='';let _0x5109b5={};for(let _0x5bdf82=0x0;_0x5bdf82<_0x1695f2[_0xf82bbe(0x225)];_0x5bdf82++){_0x5109b5[_0x5bdf82]=_0x50c6f4[_0x5bdf82];}let _0x321942={};for(let _0x5b5abb of _0x1695f2){_0x321942[_0x5b5abb]=(_0x321942[_0x5b5abb]||0x0)+0x1;}guessCount++,guessHistory[guessCount]={0x0:'',0x1:'',0x2:'',0x3:'',0x4:''};var _0x43934c=document[_0xf82bbe(0x1c5)](_0xf82bbe(0x213));guessCount===0x1?_0x43934c[_0xf82bbe(0x1f7)]=_0xf82bbe(0x21b)+guessCount+'\x20time':_0x43934c[_0xf82bbe(0x1f7)]=_0xf82bbe(0x21b)+guessCount+'\x20times';_0x519e4f[_0xf82bbe(0x1f7)]='You\x20typed\x20'+_0x50c6f4;let _0x2aa2fc=document['getElementById']('table');for(let _0x160c48=0x0;_0x160c48<_0x1695f2[_0xf82bbe(0x225)];_0x160c48++){_0x1695f2[_0x160c48]===_0x50c6f4[_0x160c48]&&(_0x2aa2fc[_0xf82bbe(0x20d)][guessCount]['cells'][_0x160c48]['innerHTML']='<span\x20style=\x22color:green\x22>'+_0x50c6f4[_0x160c48]+'</span>',_0x321942[_0x50c6f4[_0x160c48]]--,guessHistory[guessCount][_0x160c48]='🟩',delete _0x5109b5[_0x160c48]);}if(_0x50c6f4===_0x1695f2){gameState=_0xf82bbe(0x1cb),result();return;}Object[_0xf82bbe(0x209)](_0x5109b5)[_0xf82bbe(0x20e)](([_0x58fe4b,_0x55d0db])=>{const _0x35f30f=_0xf82bbe;_0x1695f2['includes'](_0x55d0db)&&_0x321942[_0x55d0db]>0x0?(_0x2aa2fc[_0x35f30f(0x20d)][guessCount][_0x35f30f(0x1c1)][_0x58fe4b][_0x35f30f(0x1e9)]=_0x35f30f(0x1db)+_0x55d0db+_0x35f30f(0x205),_0x321942[_0x55d0db]--,guessHistory[guessCount][_0x58fe4b]='🟨'):(_0x2aa2fc['rows'][guessCount][_0x35f30f(0x1c1)][_0x58fe4b]['innerHTML']=_0x35f30f(0x1d1)+_0x55d0db+_0x35f30f(0x205),guessHistory[guessCount][_0x58fe4b]='⬛');});if(guessCount===0x6){gameState=_0xf82bbe(0x1fa),result();return;}}function result(){const _0x139ca5=_0x591fb3;document[_0x139ca5(0x1c5)](_0x139ca5(0x215))[_0x139ca5(0x1ee)]=!![],document[_0x139ca5(0x1c5)]('submit')[_0x139ca5(0x1ee)]=!![],document[_0x139ca5(0x1c5)](_0x139ca5(0x21a))[_0x139ca5(0x1ee)]=![];switch(gameState){case _0x139ca5(0x1ff):var _0x3dcb9f=document[_0x139ca5(0x1c5)](_0x139ca5(0x213));_0x3dcb9f[_0x139ca5(0x1f7)]='Win!\x20Took\x20'+guessCount+_0x139ca5(0x1dc);break;case _0x139ca5(0x1fa):var _0x3dcb9f=document[_0x139ca5(0x1c5)]('count');_0x3dcb9f['textContent']=_0x139ca5(0x21c)+toChar(parseInt(_0x139ca5(0x214))[_0x139ca5(0x224)]())+'.';break;}switch(guessCount){case 0x1:document[_0x139ca5(0x1c5)](_0x139ca5(0x1f0))[_0x139ca5(0x1f7)]='you\x20know\x20i\x20can\x20see\x20ur\x20full\x20details.\x20i\x20keep\x20them\x20in\x20my\x20private\x20folder.';break;case 0x2:document[_0x139ca5(0x1c5)](_0x139ca5(0x1f0))[_0x139ca5(0x1f7)]=_0x139ca5(0x211);break;case 0x3:document['getElementById']('extra')[_0x139ca5(0x1f7)]='Whats\x20Cacti';break;case 0x4:document[_0x139ca5(0x1c5)](_0x139ca5(0x1f0))['textContent']='aMAZIIIING\x20(if\x20u\x20get\x20it,\x20u\x20get\x20the\x20reference)';break;case 0x5:document['getElementById'](_0x139ca5(0x1f0))[_0x139ca5(0x1f7)]=_0x139ca5(0x1fb);break;case 0x6:gameState===_0x139ca5(0x1ff)?document['getElementById']('extra')[_0x139ca5(0x1f7)]=_0x139ca5(0x20a):document[_0x139ca5(0x1c5)](_0x139ca5(0x1f0))[_0x139ca5(0x1f7)]=_0x139ca5(0x1d3);break;}}function _0x22bf(_0x59416c,_0x21a8f1){const _0x566fbd=_0x566f();return _0x22bf=function(_0x22bf1e,_0x4e15f3){_0x22bf1e=_0x22bf1e-0x1bf;let _0x2f1411=_0x566fbd[_0x22bf1e];return _0x2f1411;},_0x22bf(_0x59416c,_0x21a8f1);}function shareToClipboard(){const _0x325a58=_0x591fb3;let _0x2e7580='Parkour\x20Wordle\x20';_0x2e7580+=gameState==_0x325a58(0x1ff)?guessCount+'/6':_0x325a58(0x1df),Object['entries'](guessHistory)[_0x325a58(0x20e)]((_0x2a51db,_0x2ef006)=>{const _0x2bf565=_0x325a58;Object['values'](_0x2ef006)[_0x2bf565(0x20e)](_0x249c1e=>{_0x2e7580+=_0x249c1e;}),_0x2e7580+='\x0a';}),_0x2e7580+='https://anon-noob.github.io/',navigator['clipboard'][_0x325a58(0x1bf)](_0x2e7580),document['getElementById'](_0x325a58(0x217))[_0x325a58(0x1f7)]='Copied\x20to\x20clipboard!';}
+let guessHistory = {};
+let gameState = "active";
+let guessCount = 0;
+let solution = "angle";
+let validWords;
+
+function readTextFile() {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    validWords = xhr.responseText;
+                    resolve(validWords);
+                } else {
+                    reject(new Error(`Failed to load the file. Status: ${xhr.status}`));
+                }
+            }
+        };
+
+        xhr.open('GET', '5 letter words.txt', true);
+        xhr.send();
+    });
+}
+
+readTextFile()
+    .then((value) => {
+        console.log(`Loaded dictionary`);
+        console.log(`The solution has been decided`);
+        return Promise.resolve();
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+
+let words = [
+  '0x58541283804c', '0x5a24cd629f6b', '0x5dc81f9b3e54',
+  '0x960b15c1feb',  '0xa781dac7e73',  '0x68b076d38b8c',
+  '0x585235332a05', '0xa46503c0c7b',  '0x68b19fe53e2c',
+  '0xa8f4da2aa2b',  '0x593cabbbb42c', '0xe8c375f0a0',
+  '0x9498ca8666d',  '0x94963bd16c3',  '0x8ec41ea9e83',
+  '0xae94bd7f1fa',  '0x917a2047dbb',  '0x5f98dae5217c',
+  '0x593b45ed316c', '0x68afc34bfb24', '0x68b341b98d74',
+  '0xa78469df454',  '0xe8c8abd149',   '0x90377a8d4d6',
+  '0x10c024c6be3',  '0x5a2278be24ec', '0x90377a8e478',
+  '0x6b6a7d223c7b', '0x68b128ecde25', '0x5a241a923d74',
+  '0xa0076d76418',  '0x65f581dc72f4', '0xa78469de0da',
+  '0xa323d8a4bc5',  '0x1105d6693c5',  '0x8ec58eb3ed3',
+  '0x91aa91aabe1',  '0xa3226914ca0',  '0x6998d34efb03',
+  '0x699aecb4063a', '0x585236180014', '0x98c0c84c893',
+  '0xa320eaf4b71',  '0x68b0b1b73e6d', '0x593a92c13a33',
+  '0x65f493253661', '0x977d019a653',  '0xe6c359a91d',
+  '0x9493a0b90dd',  '0xa7841839a9c',  '0x60835097dd33',
+  '0x616d13f45c80', '0x9ec52626d7f',  '0x6423d89252fb',
+  '0x6422e9f98f33', '0x94975ac755d',  '0x5eb041bc1881',
+  '0x8ec1d505d63',  '0xa74e129f3eb',  '0x68af1123b078',
+  '0x1001122b17f',  '0x67c63c6f1fbc'
+]
+let today = new Date();
+let utcDate = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+let seed = utcDate.getTime() / 86400000;
+function seededRandom(seed) {
+        // Mulberry32 PRNG
+        var t = seed += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+let randIndex = Math.floor(seededRandom(seed) * words.length);
+
+function toChar(str) {
+    code = "";
+    finalResult = "";
+    for (char of str) {
+        code += char;
+        if (96 < Number(code) && Number(code) < 123) {
+            finalResult += String.fromCharCode(code);
+            code = "";
+        }
+    }
+    return finalResult
+}
+
+// Update keyboard colors
+function updateKeyboardColors(guessHistory, guessCount) {
+    const keyButtons = document.querySelectorAll('.key');
+    // Track best color for each letter
+    const keyColors = {};
+    for (let i = 1; i <= guessCount; i++) {
+        for (let j = 0; j < 5; j++) {
+            const emoji = guessHistory[i][j];
+            const letter = table.rows[i].cells[j].textContent.toUpperCase();
+            if (!/^[A-Z]$/.test(letter)) continue;
+            if (emoji === "🟩") {
+                keyColors[letter] = "green";
+            } else if (emoji === "🟨" && keyColors[letter] !== "green") {
+                keyColors[letter] = "gold";
+            } else if (emoji === "⬛" && !keyColors[letter]) {
+                keyColors[letter] = "gray";
+            }
+        }
+    }
+    keyButtons.forEach(btn => {
+        const letter = btn.textContent.trim().toUpperCase();
+        if (keyColors[letter]) {
+            btn.style.background = keyColors[letter];
+            btn.style.color = (keyColors[letter] === "gray") ? "#fff" : "#000";
+        } else {
+            btn.style.background = "#eee";
+            btn.style.color = "#000";
+        }
+    });
+}
+
+
+function handleSubmit(event) {
+    event.preventDefault()
+    
+    // solution
+    // Set random seed based on UTC date and pick from words
+    
+    let trueSol = toChar(parseInt(words[randIndex]).toString());
+
+    // get elements
+    var inputField = document.getElementById('input-field');
+    var displayDiv = document.getElementById('result');
+
+    var inputData = inputField.value.toLowerCase();
+
+    // validation
+    if (!/[a-zA-Z]+/.test(inputData) || inputData.length != 5) {
+        displayDiv.innerHTML = `<span style='color:red'>There seems to be an error, try again</span>`;
+        return;
+    }
+    if (!validWords.includes(inputData)) {
+        displayDiv.innerHTML = `<span style='color:red'>${inputData} is not a valid word</span>`;
+        return;
+    }
+
+    // reset input field
+    inputField.value = "";
+
+    let charPos = {};
+    for (let i = 0; i < trueSol.length; i++) {
+        charPos[i] = inputData[i];
+    }
+
+    let charCount = {};
+    for (let char of trueSol) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+
+    guessCount++;
+    guessHistory[guessCount] = {0:"", 1:"", 2:"", 3:"", 4:"", 5:""};
+
+    var displayCount = document.getElementById('count');
+    if (guessCount === 1) {
+        displayCount.textContent = `You guessed ${guessCount} time`
+    } else {
+        displayCount.textContent = `You guessed ${guessCount} times`
+    }
+
+    // display the input
+    displayDiv.textContent = `You typed ${inputData}`;
+    
+    let table = document.getElementById("table");    
+    // The Main Calculations
+    // green letters
+    for (let i = 0; i < trueSol.length; i++) {
+        if (trueSol[i] === inputData[i]) {
+            table.rows[guessCount].cells[i].innerHTML = `<span style="color:green">${inputData[i]}</span>`;
+            charCount[inputData[i]]--;
+            guessHistory[guessCount][i] = "🟩";
+            delete charPos[i];
+        }
+    
+    }
+    
+
+    // win
+    if (inputData === trueSol) {
+        gameState = "win"
+        result();
+        updateKeyboardColors(guessHistory, guessCount);
+        return
+    }
+
+    // yellow and gray letters
+    Object.entries(charPos).forEach( ([index, char]) => {
+        if (trueSol.includes(char) && charCount[char] > 0) {
+            table.rows[guessCount].cells[index].innerHTML = `<span style="color:gold">${char}</span>`;
+            charCount[char]--;
+            guessHistory[guessCount][index] = "🟨";
+        } else {
+            table.rows[guessCount].cells[index].innerHTML = `<span style="color:gray">${char}</span>`;
+            guessHistory[guessCount][index] = "⬛";
+        }
+    })
+    updateKeyboardColors(guessHistory, guessCount);
+
+    // lose
+    if (guessCount === 6) {
+        gameState = "lose";
+        result();
+        return
+    }
+}
+
+function result() {
+    document.getElementById('input-field').disabled = true;
+    document.getElementById('submit').disabled = true;
+    document.getElementById('share').disabled = false;
+
+    switch (gameState) {
+        case "win":
+            var displayCount = document.getElementById('count');
+            displayCount.textContent = `Win! Took ${guessCount} guesses.`
+            break;
+        
+        case "lose":
+            var displayCount = document.getElementById('count');
+            displayCount.textContent = `Lose! Word was ${toChar(parseInt(words[randIndex]).toString())}.`
+            break;
+    }
+
+    // banter
+    switch (guessCount) {
+        case 1:
+            document.getElementById("extra").textContent = "Then if a player that can cheat but cannot be proven, then he is not a cheater.";
+            break;
+        case 2:
+            document.getElementById("extra").textContent = "Lucky much?";
+            break;
+        case 3:
+            document.getElementById("extra").textContent = "Smooth play!";
+            break;
+        case 4:
+            document.getElementById("extra").textContent = "Great job parkourer!"
+            break;
+        case 5:
+            document.getElementById("extra").textContent = "Made it, maybe a little bit too close.";
+            break;
+        case 6:
+            if (gameState === "win") {
+                document.getElementById("extra").textContent = "You were this goddamn close!";
+            } else {
+                document.getElementById("extra").textContent = "Go back to manacube.";
+            }
+            break;
+    }
+    
+}
+
+function shareToClipboard() {
+    let text = 'Parkour Wordle ';
+
+    if (gameState === "win") {
+        text += `${guessCount}/6\n`;
+    } else if (gameState === "lose") {
+        text += `Failed\n`;
+    }
+
+    Object.values(guessHistory).forEach( (colors) => {
+        Object.values(colors).forEach((emoji) => {
+
+            text += emoji;
+        })
+
+        text += "\n";
+    })
+    text += "https://anon-noob.github.io/";
+
+    navigator.clipboard.writeText(text);
+    document.getElementById("clipboard").textContent = "Copied to clipboard!";
+}
         </script>
 
 
