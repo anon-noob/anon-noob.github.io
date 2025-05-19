@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+        body {
+            background: #fff;
+            color: #111;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+            background: #181818;
+            color: #eee;
+            }
+        }
+        </style>
         <title>pkworlde</title>
     </head>
 
@@ -13,52 +25,78 @@
     
     <main>
         <table id="table">
-            <th colspan="5">
-                Wordle
-            </th>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
-            <tr>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-                <td>_</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th colspan="5">Wordle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+                <tr>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                    <td><button class="cell-btn" disabled></button></td>
+                </tr>
+            </tbody>
         </table>
+        <style>
+        .cell-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid #bbb;
+            border-radius: 6px;
+            background: #fff;
+            color: #111;
+            margin: 2px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            .cell-btn {
+                background: #222;
+                color: #eee;
+                border-color: #444;
+            }
+        }
+        </style>
 
         <form method="get" onsubmit="handleSubmit(event)">
             <input id="input-field" type="text" pattern="[a-zA-Z]+" minlength="5" maxlength="5" placeholder="Your word" required>
@@ -318,12 +356,15 @@ function handleSubmit(event) {
     // green letters
     for (let i = 0; i < trueSol.length; i++) {
         if (trueSol[i] === inputData[i]) {
-            table.rows[guessCount].cells[i].innerHTML = `<span style="color:green">${inputData[i]}</span>`;
+            let btn = table.rows[guessCount].cells[i].querySelector('button');
+            btn.textContent = inputData[i].toUpperCase();
+            btn.style.color = "white";
+            btn.style.background = "green";
+            btn.style.fontSize = "2em";
             charCount[inputData[i]]--;
             guessHistory[guessCount][i] = "🟩";
             delete charPos[i];
         }
-    
     }
     
 
@@ -336,16 +377,21 @@ function handleSubmit(event) {
     }
 
     // yellow and gray letters
-    Object.entries(charPos).forEach( ([index, char]) => {
+    Object.entries(charPos).forEach(([index, char]) => {
+        let btn = table.rows[guessCount].cells[index].querySelector('button');
+        btn.textContent = char.toUpperCase();
+        btn.style.fontSize = "2em";
         if (trueSol.includes(char) && charCount[char] > 0) {
-            table.rows[guessCount].cells[index].innerHTML = `<span style="color:gold">${char}</span>`;
+            btn.style.color = "black";
+            btn.style.background = "gold";
             charCount[char]--;
             guessHistory[guessCount][index] = "🟨";
         } else {
-            table.rows[guessCount].cells[index].innerHTML = `<span style="color:gray">${char}</span>`;
+            btn.style.color = "white";
+            btn.style.background = "gray";
             guessHistory[guessCount][index] = "⬛";
         }
-    })
+    });
     updateKeyboardColors(guessHistory, guessCount);
 
     // lose
@@ -433,7 +479,7 @@ function shareToClipboard() {
 
         text += "\n";
     })
-    text += "https://anon-noob.github.io/pkwordle/";
+    text += "https://anon-noob.github.io/";
 
     navigator.clipboard.writeText(text);
     document.getElementById("clipboard").textContent = "Copied to clipboard!";
